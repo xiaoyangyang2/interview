@@ -1,0 +1,65 @@
+#include <iostream>
+using namespace std;
+const int m = 3;
+int main()
+{
+    int n, f = 0;
+    cin >> n;
+    for (int i = 1; i <= n; i++) f = (f + m) % i;
+    cout << f + 1 << endl;
+}
+
+#include<iostream>
+using namespace std;
+main()
+{
+    bool a[101]={0};
+    int n,m,i,f=0,t=0,s=0;
+    cin>>n>>m;
+    do
+    {
+        ++t;//逐个枚举圈中的所有位置
+        if(t>n)
+            t=1;//数组模拟环状，最后一个与第一个相连
+        if(!a[t])
+            s++;//第t个位置上有人则报数
+        if(s==m)//当前报的数是m
+        {
+            s=0;//计数器清零
+            cout<<t<<' ';//输出被杀人编号
+            a[t]=1;//此处人已死，设置为空
+            f++;//死亡人数+1
+        }
+    }while(f!=n);//直到所有人都被杀死为止
+}
+
+#python实现
+#控制参数：
+ 
+nums = 41
+call = 3
+ 
+#参数定义：
+peoples = []
+for _ in range(nums):
+    peoples.append(True)
+ 
+result = []
+num =1
+#主逻辑
+while(any(peoples)):
+    for index,people in enumerate(peoples):
+        if people:
+            if num == call:
+                peoples[index] = False
+                result.append(index+1)
+#                print(index+1)#每轮的出局者                
+#                print(peoples)#每次的队列状态
+                num = 1               
+            else:
+                num += 1
+print('-'* 25)
+print('\n总数为%d,报数为%d' % (nums,call))        
+print('约瑟夫序列为：\n%s\n' % result)      
+print('-'* 25)
+
